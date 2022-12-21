@@ -1,0 +1,18 @@
+div:focus {
+    color: lightcoral;
+}
+
+.inline {
+    display: inline-block;
+    margin: 10px;
+}
+
+.sparse-vertical {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sparse-horizontal {
+    margin-left: 20px;
+    margin-right: 20px;
+}

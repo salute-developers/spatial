@@ -1,0 +1,71 @@
+{
+  "name": "@salutejs/spatial",
+  "version": "3.0.0",
+  "author": "Salute Frontend Team <salute.developers@gmail.com>",
+  "description": "Spatial navigation",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:salute-developers/spatial.git"
+  },
+  "bugs": {
+    "url": "https://github.com/salute-developers/spatial/issues"
+  },
+  "homepage": "https://github.com/salute-developers/spatial#readme",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "npm run clean && npm run compile",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo",
+    "compile": "tsc",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "prettier:fix": "prettier --write .",
+    "docs:build": "typedoc src/index.ts",
+    "docs:serve": "http-server ./docs -c-1",
+    "test-app:start": "rm -rf dist-test-app .parcel-cache && parcel ./tests/pages/**/*.html --dist-dir dist-test-app --no-cache",
+    "test-app:build": "parcel build ./tests/pages/**/*.html --dist-dir dist-test-app --no-cache",
+    "cypress:open": "cypress open",
+    "release": "git diff && auto shipit"
+  },
+  "browserslist": [
+    "last 1 Chrome versions"
+  ],
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "@types/react": "^18.0.26",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "auto": "^10.37.6",
+    "cypress": "^10.11.0",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "http-server": "^14.1.1",
+    "parcel": "^2.8.2",
+    "prettier": "2.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typedoc": "^0.23.23",
+    "typescript": "^4.9.4"
+  },
+  "peerDependencies": {
+    "react": "^16.13 || ^17.0 || ^18.0"
+  },
+  "keywords": [
+    "spatial navigation",
+    "spatnav",
+    "spat nav"
+  ],
+  "engines": {
+    "node": ">=16.18.0"
+  },
+  "contributors": [
+    "Арсений Кругликов"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
