@@ -36,7 +36,7 @@ const App = () => {
 
 ### Добавление секции
 
-Для навигации `@salutejs/spatial` использует [секции](###Подробнееосекциях). Секцию можно добавить с помощью хука `useSection`.
+Для навигации `@salutejs/spatial` использует [секции](#подробнее-о-секциях). Секцию можно добавить с помощью хука `useSection`.
 
 ```jsx
 import React from 'react';
@@ -194,7 +194,7 @@ const Page = ({ children }) => {
         customize2({
             simpleSectionOptions: { type: 'row' },
         });
-    }, [customize]);
+    }, [[customize1, customize2]]);
 
     return (
         <>
@@ -253,7 +253,6 @@ const Page = ({ children }) => {
     const [section2, customize2] = useSection('section2');
 
     useEffect(() => {
-        // выключаем навигацию в секции section1 целиком
         customize1({
             simpleSectionOptions: { type: 'column' },
         });
@@ -261,7 +260,7 @@ const Page = ({ children }) => {
         customize2({
             simpleSectionOptions: { type: 'row' },
         });
-    }, [customize]);
+    }, [customize1, customize2]);
 
     return (
         <>
