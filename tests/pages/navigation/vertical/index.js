@@ -3,4 +3,5 @@ import { Simple } from '../../../components/Simple';
 import '../../../styles/common.css';
 
 const app = document.getElementById('app');
-ReactDOM.render(<Simple />, app);
+const root = createRoot(app);
+root.render(<Simple />);
