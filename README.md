@@ -228,6 +228,36 @@ const Page = ({ children }) => {
 
 О всех параметрах секции можно почитать в документации к типу `Config`. Параметры передаются в функцию `customize`.
 
+## Полезные методы SpatialNavigation
+
+У инстанса SpatialNavigation есть ряд методов для упрощения некоторых сценариев:
+ - Включение и выключение навигации для данной секции или полностью
+ - Удаление или добавление секции в навигацию
+ - Изменение глобального конфига или конфига секции
+ - Фокусирование указанной секции
+
+ Например, фокусирование на определенной секции на монтирование компонента.
+
+ ```jsx
+import React from 'react';
+import { useSection, spatnavInstance } from '@salutejs/spatial';
+
+const Page = ({ children }) => {
+
+    const [sectionProps] = useSection('suggest');
+
+    useEffect(() => {
+        spatnavInstance.focus('suggest');
+    }, []);
+
+    <Suggest {...sectionProps}>
+        ...
+    <Suggest/>
+};
+```
+
+Полный список методов и их сигнатуры смотрите в коде [SpatialNavigation](./src/core/SpatialNavigation.ts)
+
 ## Оптимизация и ускорение работы
 
 ### Intersection и Mutation observer
