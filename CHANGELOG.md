@@ -1,3 +1,15 @@
+# v3.0.3 (Tue Feb 07 2023)
+
+#### 🐛 Bug Fix
+
+- Add some info about spatial instance [#3](https://github.com/salute-developers/spatial/pull/3) ([@SeanSilke](https://github.com/SeanSilke))
+
+#### Authors: 1
+
+- Sergey Orlov ([@SeanSilke](https://github.com/SeanSilke))
+
+---
+
 # v3.0.2 (Mon Jan 30 2023)
 
 #### 🐛 Bug Fix
