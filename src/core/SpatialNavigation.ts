@@ -541,7 +541,7 @@ export class SpatialNavigation {
 
         const rootElement = document.getElementById(sectionId);
 
-        assert(rootElement !== null);
+        assert(rootElement !== null, `Unable to get element by id=${sectionId}. Section with id ${sectionId} was not created.`);
 
         let sectionElements: HTMLCollectionOf<HTMLElement> | Set<HTMLElement>;
 
