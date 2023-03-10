@@ -9,6 +9,8 @@
 
 Для мобильных устройств или других устройств с сенсорным экраном это не надо.
 
+Документации с аннотацией типов также доступна на сайте - https://plasma.sberdevices.ru/spatial/
+
 ## Установка
 
 ```sh
@@ -256,7 +258,7 @@ const Page = ({ children }) => {
 };
 ```
 
-Полный список методов и их сигнатуры смотрите в коде [SpatialNavigation](./src/core/SpatialNavigation.ts)
+Полный список методов и их сигнатуры смотрите в коде [SpatialNavigation](https://github.com/salute-developers/spatial/blob/master/src/core/SpatialNavigation.ts) или на [советующей странице документации](https://plasma.sberdevices.ru/spatial/classes/SpatialNavigation.html)
 
 ## Оптимизация и ускорение работы
 
