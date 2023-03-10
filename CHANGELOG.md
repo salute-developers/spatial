@@ -1,3 +1,15 @@
+# v3.0.4 (Fri Mar 10 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation action [#4](https://github.com/salute-developers/spatial/pull/4) ([@SeanSilke](https://github.com/SeanSilke))
+
+#### Authors: 1
+
+- Sergey Orlov ([@SeanSilke](https://github.com/SeanSilke))
+
+---
+
 # v3.0.3 (Tue Feb 07 2023)
 
 #### 🐛 Bug Fix
