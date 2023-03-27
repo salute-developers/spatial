@@ -1,3 +1,15 @@
+# v3.0.6 (Mon Mar 27 2023)
+
+#### 🐛 Bug Fix
+
+- Bumped node and deps [#6](https://github.com/salute-developers/spatial/pull/6) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # v3.0.5 (Fri Mar 10 2023)
 
 #### ⚠️ Pushed to `master`
