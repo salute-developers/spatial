@@ -211,8 +211,15 @@ export class SpatialNavigation {
                 const elementFromLeaveFor = getLeaveForElement(currentSection, direction);
 
                 switch (elementFromLeaveFor.type) {
+                    case 'no-spatnav-navigation': {
+                        return false;
+                    }
                     case 'section-name': {
-                        return this.focusSection(elementFromLeaveFor.result);
+                        const focused = this.focusSection(elementFromLeaveFor.result);
+                        if (focused) {
+                            return focused;
+                        }
+                        break;
                     }
                     case 'query-selector': {
                         const element = document.querySelector<HTMLElement>(elementFromLeaveFor.result);
@@ -223,10 +230,7 @@ export class SpatialNavigation {
                             return true;
                         }
 
-                        return false;
-                    }
-                    case 'no-spatnav-navigation': {
-                        return false;
+                        break;
                     }
                     case 'element': {
                         const element = elementFromLeaveFor.result;
@@ -237,7 +241,7 @@ export class SpatialNavigation {
                             return true;
                         }
 
-                        return false;
+                        break;
                     }
                     case 'fallback-to-spatnav':
                     default:
@@ -270,8 +274,15 @@ export class SpatialNavigation {
         const elementFromLeaveFor = getLeaveForElement(currentSection, direction);
 
         switch (elementFromLeaveFor.type) {
+            case 'no-spatnav-navigation': {
+                return false;
+            }
             case 'section-name': {
-                return this.focusSection(elementFromLeaveFor.result);
+                const focused = this.focusSection(elementFromLeaveFor.result);
+                if (focused) {
+                    return focused;
+                }
+                break;
             }
             case 'query-selector': {
                 const element = document.querySelector<HTMLElement>(elementFromLeaveFor.result);
@@ -282,10 +293,7 @@ export class SpatialNavigation {
                     return true;
                 }
 
-                return false;
-            }
-            case 'no-spatnav-navigation': {
-                return false;
+                break;
             }
             case 'element': {
                 const element = elementFromLeaveFor.result;
@@ -296,7 +304,7 @@ export class SpatialNavigation {
                     return true;
                 }
 
-                return false;
+                break;
             }
             case 'fallback-to-spatnav':
             default:
@@ -541,7 +549,7 @@ export class SpatialNavigation {
 
         const rootElement = document.getElementById(sectionId);
 
-        assert(rootElement !== null);
+        assert(rootElement !== null, `Unable to get element by id=${sectionId}. Section with id ${sectionId} was not created.`);
 
         let sectionElements: HTMLCollectionOf<HTMLElement> | Set<HTMLElement>;
 
