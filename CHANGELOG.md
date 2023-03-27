@@ -1,3 +1,15 @@
+# v3.0.7 (Mon Mar 27 2023)
+
+#### 🐛 Bug Fix
+
+- added error message to add function [#5](https://github.com/salute-developers/spatial/pull/5) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # v3.0.6 (Mon Mar 27 2023)
 
 #### 🐛 Bug Fix
