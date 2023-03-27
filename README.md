@@ -233,28 +233,29 @@ const Page = ({ children }) => {
 ## Полезные методы SpatialNavigation
 
 У инстанса SpatialNavigation есть ряд методов для упрощения некоторых сценариев:
- - Включение и выключение навигации для данной секции или полностью
- - Удаление или добавление секции в навигацию
- - Изменение глобального конфига или конфига секции
- - Фокусирование указанной секции
 
- Например, фокусирование на определенной секции на монтирование компонента.
+-   Включение и выключение навигации для данной секции или полностью
+-   Удаление или добавление секции в навигацию
+-   Изменение глобального конфига или конфига секции
+-   Фокусирование указанной секции
 
- ```jsx
+Например, фокусирование на определенной секции на монтирование компонента.
+
+```jsx
 import React from 'react';
 import { useSection, spatnavInstance } from '@salutejs/spatial';
 
 const Page = ({ children }) => {
 
-    const [sectionProps] = useSection('suggest');
+   const [sectionProps] = useSection('suggest');
 
-    useEffect(() => {
-        spatnavInstance.focus('suggest');
-    }, []);
+   useEffect(() => {
+       spatnavInstance.focus('suggest');
+   }, []);
 
-    <Suggest {...sectionProps}>
-        ...
-    <Suggest/>
+   <Suggest {...sectionProps}>
+       ...
+   <Suggest/>
 };
 ```
 
