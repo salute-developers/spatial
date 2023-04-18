@@ -87,11 +87,11 @@ export class SpatialNavigation {
     }
 
     private focusNext(direction: Direction, currentFocusedElement: HTMLElement, currentSectionId: string): boolean {
-        assert(this.allFocusableItems !== null);
+        assert(this.allFocusableItems !== null,"Focusable elements missing");
 
         const currentSection = this.sections.get(currentSectionId);
 
-        assert(currentSection !== undefined);
+        assert(currentSection !== undefined,`Unable to find section with ${currentSectionId} id`);
 
         if (currentSection.config.simpleSectionOptions !== null) {
             const nextSimpleSectionElement = getNextSimpleSectionElement(
@@ -205,7 +205,7 @@ export class SpatialNavigation {
 
             const nextSection = this.sections.get(nextSectionId);
 
-            assert(nextSection !== undefined);
+            assert(nextSection !== undefined,`Unable to find section with ${nextSectionId} id`);
 
             if (currentSectionId !== nextSectionId) {
                 const elementFromLeaveFor = getLeaveForElement(currentSection, direction);
@@ -365,8 +365,9 @@ export class SpatialNavigation {
 
         const currentSectionId = getSectionId(currentFocusedElement);
 
-        assert(currentSectionId !== null);
-
+        if(currentSectionId === null){
+            return false;
+        }
         this.focusNext(direction, currentFocusedElement, currentSectionId);
 
         return stopEvent(event);
@@ -697,7 +698,7 @@ export class SpatialNavigation {
      * @param sectionId
      */
     setDefaultSection(sectionId: string): void {
-        assert(this.sections.has(sectionId) === true);
+        assert(this.sections.has(sectionId) === true,`Unable to set default section because section with ${sectionId} not found`);
 
         this.defaultSectionId = sectionId;
     }
