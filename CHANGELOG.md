@@ -1,3 +1,16 @@
+# v3.0.8 (Mon Apr 24 2023)
+
+#### 🐛 Bug Fix
+
+- Speed 774 [#8](https://github.com/salute-developers/spatial/pull/8) ([@Troff8](https://github.com/Troff8) ISeTrofimov@sberbank.ru)
+
+#### Authors: 2
+
+- Troff ([@Troff8](https://github.com/Troff8))
+- troff8 (ISeTrofimov@sberbank.ru)
+
+---
+
 # v3.0.7 (Mon Mar 27 2023)
 
 #### 🐛 Bug Fix
