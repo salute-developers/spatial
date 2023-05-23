@@ -11,6 +11,24 @@
 
 Документации с аннотацией типов также доступна на сайте - https://plasma.sberdevices.ru/spatial/
 
+## Оглавление
+
+* [Установка](#Установка)
+* [Минимальная настройка приложения для работы с `@salutejs/spatial`](#Минимальная-настройка-приложения-для-работы-с-`@salutejs/spatial`)
+    * [Инициализация в родительском компоненте всего приложения](#Инициализация-в-родительском-компоненте-всего-приложения)
+    * [Добавление секции](#Добавление-секции)
+    * [Включение навигации на DOM элементе](#Включение-навигации-на-DOM-элементе)
+* [Углубление в `@salutejs/spatial`](#Углубление-в-`@salutejs/spatial`)
+    * [Варианты инициализации](#Варианты-инициализации)
+    * [Подробнее о секциях](#Подробнее-о-секциях)
+        * [Настройка параметров секции](#Настройка-параметров-секции)
+* [Хуки](#Хуки)
+* [Полезные методы SpatialNavigation](#Полезные-методы-SpatialNavigation)
+* [Оптимизация и ускорение работы](#Оптимизация-и-ускорение-работы)
+    * [Intersection и Mutation observer](#Intersection-и-Mutation-observer)
+    * [Простые секции](#Простые-секции)
+* [Запуск тестов](#Запуск-тестов)
+
 ## Установка
 
 ```sh
@@ -86,16 +104,26 @@ export default Page;
 Добавим элементы в секцию.
 
 ```jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSection } from '@salutejs/spatial';
 
 const Page = ({ children }) => {
+    // создание секции
     const [sectionProps] = useSection('sectionName');
+
+    // установка фокуса на элемент
+    useEffect(() => {
+        const focusable = document.querySelector('sn-section-item');
+
+        if (focusable) {
+            focusable.focus();
+        }
+    }, [])
 
     return (
         <div {...sectionProps}>
             <div className="sn-section-item" tabIndex={-1}>
-                навигация работает
+                навигация работает (после выполнения useEffect, фокус будет установлен на этот элемент)
             </div>
             <div className="sn-section-item" tabIndex={-1}>
                 навигация работает
@@ -108,9 +136,9 @@ const Page = ({ children }) => {
 export default Page;
 ```
 
-Готово! Навигация настроена.
+Готово! Навигация настроена. Но надо подчеркнуть, что после инициализации и добавления секций фокус автоматически не устанавливается ни на один элемент. Это надо делать вручную или с помощью хука `useDefaultSectionFocus`.
 
-Здесь были рассмотрены только необходимые действия. Для упрощения кода и более гибкой настройки читайте далее.
+Здесь были рассмотрены только необходимые действия. Для более гибкой настройки секций и навигации читайте далее.
 
 ## Углубление в `@salutejs/spatial`
 
@@ -195,8 +223,15 @@ const Page = ({ children }) => {
 
         customize2({
             simpleSectionOptions: { type: 'row' },
+            // установка элемента по умолчанию для секции
+            getDefaultElement: (section2Root) => section2Root.firstElementChild,
+            enterTo: 'default-element',
         });
     }, [[customize1, customize2]]);
+
+    // установка секции по умолчанию и установка фокуса на элемент из этой секции, выбранный по правилам определённым в её конфиге
+    // https://plasma.sberdevices.ru/spatial/functions/useDefaultSectionFocus.html
+    useDefaultSectionFocus('section2');
 
     return (
         <>
@@ -217,7 +252,7 @@ const Page = ({ children }) => {
             </div>
             <div {...section2}>
                 <div className="sn-section-item" tabIndex={-1}>
-                    принадлежит секции section2
+                    принадлежит секции section2. После выполнения всех хуков, фокус будет установлен на этот элемент
                 </div>
                 <div className="sn-section-item" tabIndex={-1}>
                     принадлежит секции section2
@@ -228,7 +263,14 @@ const Page = ({ children }) => {
 };
 ```
 
-О всех параметрах секции можно почитать в документации к типу `Config`. Параметры передаются в функцию `customize`.
+О всех параметрах секции можно почитать в [документации к типу `Config`](https://plasma.sberdevices.ru/spatial/types/Config.html). Параметры передаются в функцию `customize`.
+
+## Хуки
+
+- [`useSpatnavInitialization`](https://plasma.sberdevices.ru/spatial/functions/useSpatnavInitialization.html) - инициализация навигации;
+- [`useSection`](https://plasma.sberdevices.ru/spatial/functions/useSection.html) - создание секции;
+- [`useSelfSection`](https://plasma.sberdevices.ru/spatial/functions/useSelfSection.html) - создание секции, состоящей только из одного элемента;
+- [`useDefaultSectionFocus`](https://plasma.sberdevices.ru/spatial/functions/useDefaultSectionFocus.html).
 
 ## Полезные методы SpatialNavigation
 
@@ -314,7 +356,7 @@ const Page = ({ children }) => {
 };
 ```
 
-# Запуск тестов
+## Запуск тестов
 
 Для запуска тесов нужно собрать пакет spatial, запустить `test-app` и `cypress`.
 
