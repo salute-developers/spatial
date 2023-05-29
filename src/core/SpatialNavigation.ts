@@ -12,6 +12,7 @@ import {
     getNextSimpleSectionElement,
     createRects,
     SECTION_ITEM_CLASS_NAME,
+    SECTION_DEFAULT_ITEM_CLASS_NAME,
 } from './utils';
 import type { Config, Section, Direction, NavigationKeyCodes } from './types';
 
@@ -22,8 +23,8 @@ const KEY_MAPPING: Record<NavigationKeyCodes, Direction> = {
     ArrowDown: 'down',
 } as const;
 
-function getNull() {
-    return null;
+function getDefaultElement(root: HTMLElement) {
+    return root.getElementsByClassName(`${SECTION_DEFAULT_ITEM_CLASS_NAME}`).item(0) as HTMLElement | null;
 }
 
 const mutationObserverOptions = { childList: true, subtree: true };
@@ -49,7 +50,7 @@ export class SpatialNavigation {
         straightOnly: false,
         straightOverlapThreshold: 0.5,
         disabled: false,
-        getDefaultElement: getNull,
+        getDefaultElement,
         enterTo: 'calculated',
         leaveFor: null,
         restrict: 'self-first',
