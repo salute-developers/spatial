@@ -1,3 +1,15 @@
+# v3.0.10 (Mon May 29 2023)
+
+#### 🐛 Bug Fix
+
+- Added support of conditional rendered sections [#10](https://github.com/salute-developers/spatial/pull/10) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # v3.0.9 (Fri May 26 2023)
 
 #### 🐛 Bug Fix
