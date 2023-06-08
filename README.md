@@ -104,7 +104,7 @@ export default Page;
 Добавим элементы в секцию.
 
 ```jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSection } from '@salutejs/spatial';
 
 const Page = ({ children }) => {
@@ -112,8 +112,10 @@ const Page = ({ children }) => {
     const [sectionProps] = useSection('sectionName');
 
     // установка фокуса на элемент
+    const ref = useRef<HTMLElement | null>(null);
+
     useEffect(() => {
-        const focusable = document.querySelector('sn-section-item');
+        const focusable = ref.current;
 
         if (focusable) {
             focusable.focus();
@@ -122,7 +124,7 @@ const Page = ({ children }) => {
 
     return (
         <div {...sectionProps}>
-            <div className="sn-section-item" tabIndex={-1}>
+            <div ref={ref} className="sn-section-item" tabIndex={-1}>
                 навигация работает (после выполнения useEffect, фокус будет установлен на этот элемент)
             </div>
             <div className="sn-section-item" tabIndex={-1}>
