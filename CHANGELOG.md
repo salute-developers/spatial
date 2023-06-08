@@ -1,3 +1,15 @@
+# v3.0.11 (Thu Jun 08 2023)
+
+#### 🐛 Bug Fix
+
+- replaced querySelector with useRef in example [#11](https://github.com/salute-developers/spatial/pull/11) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # v3.0.10 (Mon May 29 2023)
 
 #### 🐛 Bug Fix
