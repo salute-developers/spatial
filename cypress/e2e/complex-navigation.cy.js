@@ -2,7 +2,7 @@
 /// <reference types="Cypress" />
 
 describe('leaveFor', () => {
-    before(() => {
+    beforeEach(() => {
         cy.visit('/leave-for/callback');
     });
 
@@ -42,7 +42,7 @@ describe('leaveFor', () => {
 });
 
 describe('restrict self-only', () => {
-    before(() => {
+    beforeEach(() => {
         cy.visit('/restrict/self-only');
     });
 
@@ -57,7 +57,7 @@ describe('restrict self-only', () => {
 });
 
 describe('restrict self-first и none', () => {
-    before(() => {
+    beforeEach(() => {
         cy.visit('/restrict/self-first');
     });
 
@@ -82,7 +82,7 @@ describe('restrict self-first и none', () => {
 });
 
 describe('выключенные секции', () => {
-    before(() => {
+    beforeEach(() => {
         cy.visit('/disabled-section');
     });
 
@@ -102,7 +102,7 @@ describe('выключенные секции', () => {
 });
 
 describe('простые секции навигация по колонкам (секции располагаются по бокам)', () => {
-    before(() => {
+    beforeEach(() => {
         cy.visit('/simple-sections/horizontal-column');
     });
 
@@ -124,7 +124,7 @@ describe('простые секции навигация по колонкам (
 });
 
 describe('простые секции навигация по колонкам (секции располагаются друг под другом)', () => {
-    before(() => {
+    beforeEach(() => {
         cy.visit('/simple-sections/vertical-column');
     });
 
@@ -146,7 +146,7 @@ describe('простые секции навигация по колонкам (
 });
 
 describe('простые секции навигация по рядам (секции располагаются по бокам)', () => {
-    before(() => {
+    beforeEach(() => {
         cy.visit('/simple-sections/horizontal-row');
     });
 
@@ -168,7 +168,7 @@ describe('простые секции навигация по рядам (сек
 });
 
 describe('простые секции навигация по рядам (секции располагаются друг под другом)', () => {
-    before(() => {
+    beforeEach(() => {
         cy.visit('/simple-sections/vertical-row');
     });
 
