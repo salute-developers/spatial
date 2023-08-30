@@ -96,7 +96,10 @@ type LeaveForActionDefault = {
  * Коллбэк, срабатывающий при выходе из секции
  */
 export interface LeaveForGetter {
-    (rootElement: HTMLElement, sectionId: string):
+    (
+        rootElement: HTMLElement,
+        sectionId: string,
+    ):
         | LeaveForActionQueryString
         | LeaveForActionSectionId
         | LeaveForActionNoNavigation
@@ -233,3 +236,15 @@ export interface Section {
      */
     sectionElements: HTMLCollectionOf<HTMLElement> | Set<HTMLElement>;
 }
+
+export type InitializationOptions = {
+    /**
+     * Добавляет в `window` свойство `spatnavInstance` для отладки
+     */
+    debug: boolean;
+    /**
+     * Если параметр равен `true`, то выключает IntersectionObserver и MutationObserver.
+     * Расчёты ведутся по всем элементам, а не только по тем, что на экране.
+     */
+    noObservers: boolean;
+};

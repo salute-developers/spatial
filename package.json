@@ -25,8 +25,7 @@
     "prettier:fix": "prettier --write .",
     "docs:build": "typedoc src/index.ts",
     "docs:serve": "http-server ./docs -c-1",
-    "test-app:start": "rm -rf dist-test-app .parcel-cache && parcel ./tests/pages/**/*.html --dist-dir dist-test-app --no-cache",
-    "test-app:build": "parcel build ./tests/pages/**/*.html --dist-dir dist-test-app --no-cache",
+    "test-app:start": "rm -rf dist-test-app .parcel-cache && parcel ./tests/pages/**/*.html --dist-dir dist-test-app --no-cache --port 1337",
     "cypress:open": "cypress open",
     "release": "git diff && auto shipit"
   },
@@ -35,24 +34,25 @@
   ],
   "devDependencies": {
     "@types/node": "18.15.10",
-    "@types/react": "18.0.29",
-    "@typescript-eslint/eslint-plugin": "5.56.0",
-    "@typescript-eslint/parser": "5.56.0",
+    "@types/react": "18.2.21",
+    "@typescript-eslint/eslint-plugin": "6.5.0",
+    "@typescript-eslint/parser": "6.5.0",
     "auto": "10.43.0",
-    "cypress": "10.11.0",
-    "eslint": "8.36.0",
-    "eslint-config-prettier": "8.8.0",
+    "cypress": "12.17.4",
+    "eslint": "8.48.0",
+    "eslint-config-prettier": "9.0.0",
     "eslint-plugin-react-hooks": "4.6.0",
     "http-server": "14.1.1",
-    "parcel": "2.8.3",
-    "prettier": "2.8.7",
+    "parcel": "2.9.3",
+    "prettier": "3.0.2",
+    "process": "0.11.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typedoc": "0.23.28",
-    "typescript": "5.0.2"
+    "typedoc": "0.25.0",
+    "typescript": "5.2.2"
   },
   "peerDependencies": {
-    "react": "^16.13 || ^17.0 || ^18.0"
+    "react": ">=16.13"
   },
   "keywords": [
     "spatial navigation",

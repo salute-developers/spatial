@@ -14,7 +14,7 @@ import {
     SECTION_ITEM_CLASS_NAME,
     SECTION_DEFAULT_ITEM_CLASS_NAME,
 } from './utils';
-import type { Config, Section, Direction, NavigationKeyCodes } from './types';
+import type { Config, Section, Direction, NavigationKeyCodes, InitializationOptions } from './types';
 
 const KEY_MAPPING: Record<NavigationKeyCodes, Direction> = {
     ArrowLeft: 'left',
@@ -405,58 +405,69 @@ export class SpatialNavigation {
      * Включает навигацию:
      * - устанавливает секцию по умолчанию, если был передан параметр
      * - добавляет EventListener'ы на window для работы навигации
-     * - включает IntersectionObserver и MutationObserver, следящие за видимыми элементами на экране
+     * - по умолчанию включает IntersectionObserver и MutationObserver, следящие за видимыми элементами на экране.
+     * Это поведение может быть переопределено с помощью параметра `noObservers`.
      *
-     * @param defaultSectionId
+     * @param options
+     *
+     * @param options.debug добавляет в `window` свойство `spatnavInstance` для отладки
+     *
+     * @param options.noObservers отключает IntersectionObserver и MutationObserver.
+     * Расчёты ведутся по всем элементам, а не только по тем, что на экране.
      */
-    init(defaultSectionId: string | null = null): void {
+    init({ debug = false, noObservers = false }: InitializationOptions = { debug: false, noObservers: false }): void {
         if (this.ready === true) {
             return;
         }
 
-        this.defaultSectionId = defaultSectionId;
+        if (debug) {
+            window.spatnavInstance = this;
+        }
+
         this.allFocusableItems = document.body.getElementsByClassName(
             SECTION_ITEM_CLASS_NAME,
         ) as HTMLCollectionOf<HTMLElement>;
 
-        const intersectionObserver = new IntersectionObserver((entries) => {
-            for (const entry of entries) {
-                if (entry.isIntersecting === true) {
-                    this.visibleItems.add(entry.target as HTMLElement);
-                } else {
-                    this.visibleItems.delete(entry.target as HTMLElement);
-                }
-            }
-        });
-
-        for (const element of this.allFocusableItems) {
-            intersectionObserver.observe(element);
-        }
-
-        const mutationObserver = new MutationObserver((mutationRecords) => {
-            for (const record of mutationRecords) {
-                if (record.type === 'childList') {
-                    for (const added of record.addedNodes) {
-                        if (added instanceof HTMLElement && added.classList.contains(SECTION_ITEM_CLASS_NAME)) {
-                            intersectionObserver.observe(added);
-                        }
-                    }
-
-                    for (const removed of record.removedNodes) {
-                        if (removed instanceof HTMLElement && removed.classList.contains(SECTION_ITEM_CLASS_NAME)) {
-                            intersectionObserver.unobserve(removed);
-                        }
+        if (noObservers === false) {
+            const intersectionObserver = new IntersectionObserver((entries) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting === true) {
+                        this.visibleItems.add(entry.target as HTMLElement);
+                    } else {
+                        this.visibleItems.delete(entry.target as HTMLElement);
                     }
                 }
+            });
+
+            for (const element of this.allFocusableItems) {
+                intersectionObserver.observe(element);
             }
-        });
 
-        for (const [, section] of this.sections) {
-            mutationObserver.observe(section.rootElement, mutationObserverOptions);
+            const mutationObserver = new MutationObserver((mutationRecords) => {
+                for (const record of mutationRecords) {
+                    if (record.type === 'childList') {
+                        for (const added of record.addedNodes) {
+                            if (added instanceof HTMLElement && added.classList.contains(SECTION_ITEM_CLASS_NAME)) {
+                                intersectionObserver.observe(added);
+                            }
+                        }
+
+                        for (const removed of record.removedNodes) {
+                            if (removed instanceof HTMLElement && removed.classList.contains(SECTION_ITEM_CLASS_NAME)) {
+                                intersectionObserver.unobserve(removed);
+                            }
+                        }
+                    }
+                }
+            });
+
+            for (const [, section] of this.sections) {
+                mutationObserver.observe(section.rootElement, mutationObserverOptions);
+            }
+
+            this.intersectionObserver = intersectionObserver;
+            this.mutationObserver = mutationObserver;
         }
-
-        this.intersectionObserver = intersectionObserver;
-        this.mutationObserver = mutationObserver;
 
         window.addEventListener('keydown', this.boundedOnKeyDown);
         window.addEventListener('focus', this.boundedOnFocus, true);
