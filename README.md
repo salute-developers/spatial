@@ -13,21 +13,24 @@
 
 ## Оглавление
 
-* [Установка](#Установка)
-* [Минимальная настройка приложения для работы с `@salutejs/spatial`](#Минимальная-настройка-приложения-для-работы-с-`@salutejs/spatial`)
-    * [Инициализация в родительском компоненте всего приложения](#Инициализация-в-родительском-компоненте-всего-приложения)
-    * [Добавление секции](#Добавление-секции)
-    * [Включение навигации на DOM элементе](#Включение-навигации-на-DOM-элементе)
-* [Углубление в `@salutejs/spatial`](#Углубление-в-`@salutejs/spatial`)
-    * [Варианты инициализации](#Варианты-инициализации)
-    * [Подробнее о секциях](#Подробнее-о-секциях)
-        * [Настройка параметров секции](#Настройка-параметров-секции)
-* [Хуки](#Хуки)
-* [Полезные методы SpatialNavigation](#Полезные-методы-SpatialNavigation)
-* [Оптимизация и ускорение работы](#Оптимизация-и-ускорение-работы)
-    * [Intersection и Mutation observer](#Intersection-и-Mutation-observer)
-    * [Простые секции](#Простые-секции)
-* [Запуск тестов](#Запуск-тестов)
+-   [Установка](#установка)
+-   [Минимальная настройка приложения для работы с `@salutejs/spatial`](#минимальная-настройка-приложения-для-работы-с-salutejsspatial`)
+    -   [Инициализация в родительском компоненте всего приложения](#инициализация-в-родительском-компоненте-всего-приложения)
+    -   [Добавление секции](#добавление-секции)
+    -   [Включение навигации на DOM элементе](#включение-навигации-на-dom-элементе)
+-   [Углубление в `@salutejs/spatial`](#углубление-в-salutejsspatial`)
+    -   [Варианты инициализации](#варианты-инициализации)
+    -   [Подробнее о секциях](#подробнее-о-секциях)
+        -   [Настройка параметров секции](#настройка-параметров-секции)
+-   [Хуки](#хуки)
+-   [Полезные методы SpatialNavigation](#полезные-методы-spatialnavigation)
+-   [Оптимизация и ускорение работы](#оптимизация-и-ускорение-работы)
+    -   [Intersection и Mutation observer](#intersection-и-mutation-observer)
+    -   [Простые секции](#простые-секции)
+-   [Запуск тестов](#запуск-тестов)
+-   [Pitfalls](#pitfalls)
+    -   [Next.js >= 13.0.0](#nextjs--1300)
+    -   [Next.js < 13.0.0](#nextjs--1300-1)
 
 ## Установка
 
@@ -42,7 +45,6 @@ npm install --save @salutejs/spatial
 ### Инициализация в родительском компоненте всего приложения
 
 ```jsx
-import React from 'react';
 import { useSpatnavInitialization } from '@salutejs/spatial';
 
 import { Page } from './pages/Page';
@@ -59,7 +61,6 @@ const App = () => {
 Для навигации `@salutejs/spatial` использует [секции](#подробнее-о-секциях). Секцию можно добавить с помощью хука `useSection`.
 
 ```jsx
-import React from 'react';
 import { useSection } from '@salutejs/spatial';
 
 const Page = ({ children }) => {
@@ -104,7 +105,7 @@ export default Page;
 Добавим элементы в секцию.
 
 ```jsx
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSection } from '@salutejs/spatial';
 
 const Page = ({ children }) => {
@@ -112,7 +113,7 @@ const Page = ({ children }) => {
     const [sectionProps] = useSection('sectionName');
 
     // установка фокуса на элемент
-    const ref = useRef<HTMLElement | null>(null);
+    const ref = useRef(null);
 
     useEffect(() => {
         const focusable = ref.current;
@@ -120,7 +121,7 @@ const Page = ({ children }) => {
         if (focusable) {
             focusable.focus();
         }
-    }, [])
+    }, []);
 
     return (
         <div {...sectionProps}>
@@ -168,7 +169,6 @@ spatnavInstance.unInit();
 Элементы секции должны быть потомками корневого элемента и иметь аттрибут `className="sn-section-item"`.
 
 ```jsx
-import React from 'react';
 import { useSection } from '@salutejs/spatial';
 
 const Page = ({ children }) => {
@@ -210,7 +210,6 @@ const Page = ({ children }) => {
 Также хук `useSection` возвращает функцию кастомизации. С её помощью можно гибко настроить правила навигации внутри и между секциями. А также включить или выключить секцию целиком.
 
 ```jsx
-import React from 'react';
 import { useSection } from '@salutejs/spatial';
 
 const Page = ({ children }) => {
@@ -269,10 +268,10 @@ const Page = ({ children }) => {
 
 ## Хуки
 
-- [`useSpatnavInitialization`](https://plasma.sberdevices.ru/spatial/functions/useSpatnavInitialization.html) - инициализация навигации;
-- [`useSection`](https://plasma.sberdevices.ru/spatial/functions/useSection.html) - создание секции;
-- [`useSelfSection`](https://plasma.sberdevices.ru/spatial/functions/useSelfSection.html) - создание секции, состоящей только из одного элемента;
-- [`useDefaultSectionFocus`](https://plasma.sberdevices.ru/spatial/functions/useDefaultSectionFocus.html).
+-   [`useSpatnavInitialization`](https://plasma.sberdevices.ru/spatial/functions/useSpatnavInitialization.html) - инициализация навигации;
+-   [`useSection`](https://plasma.sberdevices.ru/spatial/functions/useSection.html) - создание секции;
+-   [`useSelfSection`](https://plasma.sberdevices.ru/spatial/functions/useSelfSection.html) - создание секции, состоящей только из одного элемента;
+-   [`useDefaultSectionFocus`](https://plasma.sberdevices.ru/spatial/functions/useDefaultSectionFocus.html).
 
 ## Полезные методы SpatialNavigation
 
@@ -286,7 +285,6 @@ const Page = ({ children }) => {
 Например, фокусирование на определенной секции на монтирование компонента.
 
 ```jsx
-import React from 'react';
 import { useSection, spatnavInstance } from '@salutejs/spatial';
 
 const Page = ({ children }) => {
@@ -322,7 +320,6 @@ Mutation observer нужен для того, чтобы при обновлен
 В обоих примерах ниже режим простых секций будет работать.
 
 ```jsx
-import React from 'react';
 import { useSection } from '@salutejs/spatial';
 
 const Page = ({ children }) => {
@@ -371,3 +368,23 @@ npm run cypress:open
 ```
 
 В открывшемся окне Cypress выбрать `E2E Testing`, тестировать можно как в Chrome так и в Electron.
+
+## Pitfalls
+
+@salutejs/spatial не компилируется в CommonJS, поэтому если вы используете Next.js выполните следующее:
+
+### Next.js >= 13.0.0
+
+В `next.config.js` вам необходимо добавить свойство `transpilePackages`.
+
+```js
+const config = {
+    transpilePackages: ['@salutejs/spatial'],
+};
+```
+
+Документация по [transpilePackages](https://nextjs.org/docs/app/api-reference/next-config-js/transpilePackages).
+
+### Next.js < 13.0.0
+
+Воспользуйтесь пакетом [next-transpile-modules](https://www.npmjs.com/package/next-transpile-modules).
