@@ -1,3 +1,15 @@
+# v3.0.12 (Wed Aug 30 2023)
+
+#### 🐛 Bug Fix
+
+- Added docs about transpilePackages [#13](https://github.com/salute-developers/spatial/pull/13) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # v3.0.11 (Thu Jun 08 2023)
 
 #### 🐛 Bug Fix
