@@ -1,3 +1,15 @@
+# v3.0.13 (Thu Oct 12 2023)
+
+#### 🐛 Bug Fix
+
+- Create semgrep.yml [#16](https://github.com/salute-developers/spatial/pull/16) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # v3.0.12 (Wed Aug 30 2023)
 
 #### 🐛 Bug Fix
