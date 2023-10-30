@@ -17,8 +17,6 @@ jobs:
         run: npm ci
       - name: Install react for Parcel
         run: npm uninstall react react-dom && npm i -S react react-dom
-      - name: Build test app
-        run: npm run test-app:build
       - name: Start test app and run tests
         run: |
           npm run test-app:start &
