@@ -15,8 +15,8 @@ jobs:
           node-version-file: '.nvmrc'
       - name: Install dependencies
         run: npm ci
-      - name: Install react for Parcel
-        run: npm uninstall react react-dom && npm i -S react react-dom
+      - name: Build spatial
+        run: npm run build
       - name: Start test app and run tests
         run: |
           npm run test-app:start &

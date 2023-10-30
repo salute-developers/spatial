@@ -26,7 +26,6 @@
     "docs:build": "typedoc src/index.ts",
     "docs:serve": "http-server ./docs -c-1",
     "test-app:start": "rm -rf dist-test-app .parcel-cache && parcel ./tests/pages/**/*.html --dist-dir dist-test-app --no-cache",
-    "test-app:build": "parcel build ./tests/pages/**/*.html --dist-dir dist-test-app --no-cache",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "release": "git diff && auto shipit"
