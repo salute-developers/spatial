@@ -1,3 +1,15 @@
+# v3.0.14 (Tue Oct 31 2023)
+
+#### 🐛 Bug Fix
+
+- Add tests automation [#17](https://github.com/salute-developers/spatial/pull/17) ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+#### Authors: 1
+
+- Arseny Kruglikov ([@arsenykruglikov](https://github.com/arsenykruglikov))
+
+---
+
 # v3.0.13 (Thu Oct 12 2023)
 
 #### 🐛 Bug Fix
