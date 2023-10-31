@@ -1,6 +1,6 @@
 {
   "name": "@salutejs/spatial",
-  "version": "3.0.13",
+  "version": "3.0.14",
   "author": "Salute Frontend Team <salute.developers@gmail.com>",
   "description": "Spatial navigation",
   "main": "dist/index.js",
